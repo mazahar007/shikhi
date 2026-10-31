@@ -13,6 +13,7 @@ export default function Header() {
         </Link>
         <nav className="flex items-center gap-2 md:gap-4 flex-wrap text-[15px] font-semibold">
           <Link href="/courses" className="text-slate-700 no-underline">কোর্স</Link>
+          <Link href="/school" className="text-slate-700 no-underline">স্কুল (৪-১০)</Link>
           <Link href="/dashboard" className="text-slate-700 no-underline">ড্যাশবোর্ড</Link>
           <Link href="/contact" className="text-slate-700 no-underline">যোগাযোগ</Link>
           {user ? (
