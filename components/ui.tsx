@@ -41,11 +41,11 @@ export function CourseCard({ course }: { course: Course }) {
   );
 }
 
-export function SectionTitle({ title, sub }: { title: string; sub?: string }) {
+export function SectionTitle({ title, sub, dark = false }: { title: string; sub?: string; dark?: boolean }) {
   return (
     <div className="mb-6">
-      <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">{title}</h2>
-      {sub ? <p className="text-slate-600 mt-2">{sub}</p> : null}
+      <h2 className={`text-2xl md:text-3xl font-extrabold ${dark ? "text-white" : "text-slate-900"}`}>{title}</h2>
+      {sub ? <p className={dark ? "text-slate-400 mt-2" : "text-slate-600 mt-2"}>{sub}</p> : null}
     </div>
   );
 }

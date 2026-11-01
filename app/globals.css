@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* Shikhi — colourful category style (original Shikhi design, no third-party branding).
-   White page, dark navy hero, strong red primary accent, colourful category tiles.
-   Rounded-2xl cards, bold headings, hover lift only — no busy animation. */
+/* Shikhi — dark home design (approved v3, 2026-11-01): deep navy #0B1220 + sky accent.
+   Other pages stay light; the home page renders its own dark sections.
+   No third-party branding. Rounded-2xl cards, bold headings, hover lift only. */
 * { box-sizing: border-box; }
 body {
   margin: 0; background: #ffffff; color: #0f172a;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Bengali", "Hind Siliguri", Roboto, Arial, sans-serif;
   font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
 }
-a { color: #e11d2e; text-underline-offset: 3px; }
+a { color: #0284c7; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 3px solid #e11d2e; outline-offset: 2px;
+  outline: 3px solid #0ea5e9; outline-offset: 2px;
 }
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 .btn {
@@ -22,7 +22,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(15,23,42,.12); }
-.btn-primary { background: #e11d2e; border-color: #e11d2e; color: #fff; }
+.btn-primary { background: #0284c7; border-color: #0284c7; color: #fff; }
 .btn-dark { background: #0f172a; border-color: #0f172a; color: #fff; }
 .btn-white { background: #fff; border-color: #fff; color: #0f172a; }
 .btn-outline-white { background: transparent; border-color: rgba(255,255,255,.7); color: #fff; }
@@ -32,8 +32,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .card-hover { transition: transform .15s ease, box-shadow .15s ease; }
 .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,23,42,.12); }
 .chip { display: inline-flex; padding: 4px 12px; border-radius: 999px; background: #eef2f7; color: #334155; font-size: 13px; font-weight: 700; }
-.chip-free { background: #fee2e2; color: #991b1b; }
-.hero-dark { background: #0f172a; color: #fff; }
+.chip-free { background: #e0f2fe; color: #075985; }
+.hero-dark { background: #0b1220; color: #fff; }
 .hero-dark a:not(.btn) { color: #fff; }
 .input {
   width: 100%; min-height: 48px; padding: 11px 14px; border-radius: 12px;

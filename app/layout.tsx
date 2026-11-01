@@ -15,9 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <Header />
           <main className="pb-16">{children}</main>
-          <footer className="border-t border-slate-200 bg-white">
-            <div className="wrap py-8 text-slate-600 text-[15px]">
-              <p className="font-bold text-slate-900">শিখি (Shikhi) — বাংলা ভাষায় প্র্যাকটিক্যাল স্কিল লার্নিং</p>
+          <footer className="border-t border-[#1e3a5f] bg-[#0b1220]">
+            <div className="wrap py-8 text-slate-400 text-[15px]">
+              <p className="font-bold text-white">শিখি (Shikhi) — বাংলা ভাষায় প্র্যাকটিক্যাল স্কিল লার্নিং</p>
               <p>সব MVP কোর্স লঞ্চের জন্য ফ্রি। পেইড/প্রিমিয়াম কোর্স পরে আসবে।</p>
               <p>
                 <a href="https://www.facebook.com/mazahar007" target="_blank" rel="noreferrer">Facebook: mazahar007</a>
