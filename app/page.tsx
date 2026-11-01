@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { COURSES } from "@/lib/data";
+import { SCHOOL_CLASSES } from "@/lib/school";
 import { CourseCard, SectionTitle } from "@/components/ui";
 
 const FAQS = [
@@ -10,60 +11,83 @@ const FAQS = [
   { q: "ক্লাস ৪-১০ এর পড়া কি ফ্রি?", a: "হ্যাঁ — স্কুল ট্র্যাকের সব ক্লাস, বিষয় ও অধ্যায়ের কাঠামো সম্পূর্ণ ফ্রি। ভবিষ্যতে পেইড অ্যাডভান্সড কোর্স এলে তা আলাদাভাবে লেবেল করা হবে।" },
 ];
 
+const CLASS_GRADIENTS: Record<number, string> = {
+  4: "linear-gradient(135deg,#0f766e,#14b8a6)",
+  5: "linear-gradient(135deg,#1d4ed8,#38bdf8)",
+  6: "linear-gradient(135deg,#7c3aed,#a78bfa)",
+  7: "linear-gradient(135deg,#db2777,#f472b6)",
+  8: "linear-gradient(135deg,#d97706,#fbbf24)",
+  9: "linear-gradient(135deg,#e11d2e,#f87171)",
+  10: "linear-gradient(135deg,#065f46,#34d399)",
+};
+
 export default function Home() {
   return (
     <div>
-      <section className="wrap pt-12 md:pt-16 pb-10">
-        <span className="chip chip-free">🎓 লঞ্চ অফার — সব কোর্স ফ্রি</span>
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900 mt-4">
-          বাংলায় শিখুন,
-          <br />
-          বাস্তব স্কিল গড়ুন।
-        </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mt-4">
-          ফ্রিল্যান্সিং, AI টুলস, ভিডিও এডিটিং আর ডিজাইন — ছোট ছোট প্র্যাকটিক্যাল লেসনে,
-          আপনার ভাষায়। প্রতিটি লেসন ৫–১৫ মিনিটের।
-        </p>
-        <div className="flex gap-3 flex-wrap mt-6">
-          <Link className="btn btn-primary" href="/courses">কোর্স দেখুন</Link>
-          <Link className="btn" href="/register">ফ্রি অ্যাকাউন্ট খুলুন</Link>
+      {/* 1. Dark hero */}
+      <section className="hero-dark">
+        <div className="wrap pt-12 md:pt-16 pb-12">
+          <span className="chip chip-free">সব কোর্স ফ্রি</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mt-4">
+            বাংলায় শিখুন,
+            <br />
+            বাস্তব স্কিল গড়ুন।
+          </h1>
+          <p className="text-lg text-slate-300 max-w-2xl mt-4">
+            ফ্রিল্যান্সিং, AI টুলস, ভিডিও এডিটিং আর ডিজাইন — ছোট ছোট প্র্যাকটিক্যাল লেসনে,
+            আপনার ভাষায়। প্রতিটি লেসন ৫–১৫ মিনিটের।
+          </p>
+          <div className="flex gap-3 flex-wrap mt-6">
+            <Link className="btn btn-primary" href="/courses">কোর্স দেখুন</Link>
+            <Link className="btn btn-outline-white" href="/school">স্কুল (ক্লাস ৪-১০) দেখুন</Link>
+          </div>
+          <p className="text-sm text-slate-400 mt-4">কোনো কার্ড লাগবে না · ডেমো অ্যাকাউন্ট ব্রাউজারেই থাকে</p>
+          <div className="flex gap-2 flex-wrap mt-6">
+            {[4, 5, 6, 7, 8, 9, 10].map((n) => (
+              <Link key={n} className="btn btn-outline-white" href={`/school/${n}`}>
+                ক্লাস {n}
+              </Link>
+            ))}
+          </div>
         </div>
-        <p className="text-sm text-slate-500 mt-4">কোনো কার্ড লাগবে না · ডেমো অ্যাকাউন্ট ব্রাউজারেই থাকে</p>
       </section>
 
-      <section className="wrap py-10">
+      {/* 2. Category row: school classes */}
+      <section className="wrap py-12">
         <SectionTitle
-          title="স্কুল (ক্লাস ৪-১০) — সম্পূর্ণ ফ্রি"
-          sub="প্রাথমিক, নিম্ন মাধ্যমিক ও মাধ্যমিক (SSC) — নিজের ক্লাস বেছে বিষয় ও অধ্যায়ের আউটলাইন দেখুন। এটি একটি শেখার কাঠামো, অফিসিয়াল পাঠ্যপুস্তকের অধ্যায় তালিকা নয়।"
+          title="ক্লাস বেছে নিন"
+          sub="স্কুল (ক্লাস ৪-১০) — সম্পূর্ণ ফ্রি। নিজের ক্লাস বেছে বিষয় ও অধ্যায়ের আউটলাইন দেখুন। এটি একটি শেখার কাঠামো, অফিসিয়াল পাঠ্যপুস্তকের অধ্যায় তালিকা নয়।"
         />
-        <div className="flex gap-2 flex-wrap">
-          {[4, 5, 6, 7, 8, 9, 10].map((n) => (
-            <Link key={n} className="btn" href={`/school/${n}`}>
-              ক্লাস {n}
+        <div className="flex gap-4 overflow-x-auto pb-2">
+          {SCHOOL_CLASSES.map((c) => (
+            <Link
+              key={c.classNo}
+              href={`/school/${c.classNo}`}
+              className="card card-hover overflow-hidden no-underline shrink-0 w-[180px]"
+            >
+              <div
+                className="min-h-[110px] flex items-end p-4 text-white font-extrabold text-3xl"
+                style={{ background: CLASS_GRADIENTS[c.classNo] }}
+              >
+                ক্লাস {c.classNo}
+              </div>
+              <div className="p-4">
+                <span className="chip chip-free">ফ্রি</span>
+                <p className="text-slate-600 text-sm mt-2">
+                  {c.subjects.length}টি বিষয় · {c.subjects.reduce((s, x) => s + x.chapters.length, 0)}টি অধ্যায়
+                </p>
+              </div>
             </Link>
           ))}
+        </div>
+        <div className="mt-4">
           <Link className="btn btn-primary" href="/school">সব ক্লাস দেখুন</Link>
         </div>
       </section>
 
+      {/* 3. Popular courses */}
       <section className="wrap py-10">
-        <SectionTitle title="কেন শিখির সাথে শিখবেন?" sub="বড় কোর্সের ভিড় নয় — কাজে লাগে এমন স্কিল, ধাপে ধাপে।" />
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            ["🇧🇩 বাংলা ভাষায়", "সব ব্যাখ্যা বাংলায়, ইংরেজি টার্ম পাশে দেওয়া — বুঝতে সহজ।"],
-            ["🛠️ প্র্যাকটিক্যাল", "প্রতিটি লেসনে হাতে-কলমে কাজ: টুল, টেমপ্লেট আর চেকলিস্ট।"],
-            ["⏱️ ছোট লেসন", "৫–১৫ মিনিটের লেসন — ব্যস্ত দিনেও একটা লেসন শেষ করা যায়।"],
-          ].map(([t, d]) => (
-            <div key={t} className="card p-5">
-              <h3 className="font-bold text-lg">{t}</h3>
-              <p className="text-slate-600 text-[15px] mt-1">{d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="wrap py-10">
-        <SectionTitle title="ফিচার্ড কোর্স" />
+        <SectionTitle title="জনপ্রিয় কোর্স" sub="শিখির নিজস্ব কোর্স — সবই ফ্রি।" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {COURSES.map((c) => (
             <CourseCard key={c.slug} course={c} />
@@ -71,6 +95,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 4. Why Shikhi */}
+      <section className="wrap py-10">
+        <SectionTitle title="কেন শিখির সাথে শিখবেন?" sub="বড় কোর্সের ভিড় নয় — কাজে লাগে এমন স্কিল, ধাপে ধাপে।" />
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            ["বাংলা ভাষায়", "সব ব্যাখ্যা বাংলায়, ইংরেজি টার্ম পাশে দেওয়া — বুঝতে সহজ।"],
+            ["প্র্যাকটিক্যাল", "প্রতিটি লেসনে হাতে-কলমে কাজ: টুল, টেমপ্লেট আর চেকলিস্ট।"],
+            ["ছোট লেসন", "৫–১৫ মিনিটের লেসন — ব্যস্ত দিনেও একটা লেসন শেষ করা যায়।"],
+          ].map(([t, d]) => (
+            <div key={t} className="card card-hover p-5">
+              <h3 className="font-bold text-lg">{t}</h3>
+              <p className="text-slate-600 text-[15px] mt-1">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. How it works */}
       <section className="wrap py-10">
         <SectionTitle title="কীভাবে কাজ করে?" />
         <ol className="grid md:grid-cols-3 gap-4 list-none p-0">
@@ -79,7 +121,7 @@ export default function Home() {
             ["২. কোর্সে এনরোল করুন", "পছন্দের কোর্স বেছে এনরোল করুন, লেসন ধরে ধরে এগোন।"],
             ["৩. কুইজ দিন ও এগিয়ে যান", "প্রতিটি কোর্স শেষে কুইজ দিন, অগ্রগতি ড্যাশবোর্ডে দেখুন।"],
           ].map(([t, d]) => (
-            <li key={t} className="card p-5">
+            <li key={t} className="card card-hover p-5">
               <h3 className="font-bold text-lg">{t}</h3>
               <p className="text-slate-600 text-[15px] mt-1">{d}</p>
             </li>
@@ -96,11 +138,12 @@ export default function Home() {
             "প্রতি কোর্সে রিসোর্সের নাম ও কুইজ — শেখা যাচাই করা যায়।",
             "ভবিষ্যতে আসছে: সার্টিফিকেট, পেইড অ্যাডভান্সড কোর্স ও bKash/Nagad পেমেন্ট।",
           ].map((t) => (
-            <div key={t} className="card p-5 text-[15px]">✅ {t}</div>
+            <div key={t} className="card p-5 text-[15px]">{t}</div>
           ))}
         </div>
       </section>
 
+      {/* 6. FAQ */}
       <section className="wrap py-10">
         <SectionTitle title="সাধারণ প্রশ্ন" />
         <div className="flex flex-col gap-3">
@@ -111,8 +154,17 @@ export default function Home() {
             </details>
           ))}
         </div>
-        <div className="text-center mt-10">
-          <Link className="btn btn-primary" href="/courses">ফ্রি কোর্স শুরু করুন</Link>
+      </section>
+
+      {/* 7. Final CTA */}
+      <section className="wrap pb-12">
+        <div className="hero-dark rounded-[24px] p-8 md:p-10 text-center">
+          <h2 className="text-2xl md:text-4xl font-extrabold">আজই ফ্রিতে শেখা শুরু করুন</h2>
+          <p className="text-slate-300 mt-3">কোর্স বা স্কুল — যেটা দরকার, সেটাই বেছে নিন। সবকিছু ফ্রি।</p>
+          <div className="flex gap-3 flex-wrap justify-center mt-6">
+            <Link className="btn btn-primary" href="/courses">ফ্রি কোর্স শুরু করুন</Link>
+            <Link className="btn btn-outline-white" href="/school">স্কুল (ক্লাস ৪-১০) দেখুন</Link>
+          </div>
         </div>
       </section>
     </div>
